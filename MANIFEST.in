@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include vijaymamra *.css
+recursive-include vijaymamra *.csv
+recursive-include vijaymamra *.html
+recursive-include vijaymamra *.ico
+recursive-include vijaymamra *.js
+recursive-include vijaymamra *.json
+recursive-include vijaymamra *.md
+recursive-include vijaymamra *.png
+recursive-include vijaymamra *.py
+recursive-include vijaymamra *.svg
+recursive-include vijaymamra *.txt
+recursive-exclude vijaymamra *.pyc
