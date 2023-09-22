@@ -10,7 +10,7 @@
  "field_order": [
   "gate_pass_inwards_section",
   "naming_series",
-  "gross_weight",
+  "tier_weight",
   "column_break_2qlu4",
   "posting_date",
   "posting_time",
@@ -34,14 +34,6 @@
    "in_list_view": 1,
    "label": "Series",
    "options": "Gate-IN-",
-   "reqd": 1
-  },
-  {
-   "fieldname": "gross_weight",
-   "fieldtype": "Float",
-   "label": "Gross Weight",
-   "non_negative": 1,
-   "precision": "2",
    "reqd": 1
   },
   {
@@ -91,8 +83,9 @@
   },
   {
    "fieldname": "driver_contact_number",
-   "fieldtype": "Phone",
+   "fieldtype": "Data",
    "label": "Driver Contact Number",
+   "length": 10,
    "reqd": 1
   },
   {
@@ -103,12 +96,19 @@
    "options": "Gate Pass In",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "tier_weight",
+   "fieldtype": "Float",
+   "label": "Tare Weight",
+   "precision": "2",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-21 17:25:58.793715",
+ "modified": "2023-09-22 17:21:41.642114",
  "modified_by": "Administrator",
  "module": "vijaymamra",
  "name": "Gate Pass In",

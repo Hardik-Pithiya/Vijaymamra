@@ -26,10 +26,12 @@
   "actual_weight_section",
   "tier_weight",
   "column_break_keyqq",
-  "net_weight",
-  "column_break_0gbxs",
   "gross_weight",
+  "column_break_0gbxs",
+  "net_weight",
   "more_info_section",
+  "tolerated_weight",
+  "column_break_bqaov",
   "tolerance_in_",
   "amended_from"
  ],
@@ -54,13 +56,15 @@
    "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
-   "label": "Posting Date"
+   "label": "Posting Date",
+   "read_only": 1
   },
   {
    "default": "Now",
    "fieldname": "posting_time",
    "fieldtype": "Time",
-   "label": "Posting Time"
+   "label": "Posting Time",
+   "read_only": 1
   },
   {
    "fieldname": "logistics_details_section",
@@ -88,8 +92,10 @@
   },
   {
    "fieldname": "driver_contact_number",
-   "fieldtype": "Int",
-   "label": "Driver Contact Number"
+   "fieldtype": "Data",
+   "label": "Driver Contact Number",
+   "length": 10,
+   "reqd": 1
   },
   {
    "fieldname": "order_section",
@@ -112,7 +118,6 @@
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Gross Weight",
-   "non_negative": 1,
    "precision": "2",
    "reqd": 1
   },
@@ -124,9 +129,9 @@
    "fieldname": "tier_weight",
    "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "Tier Weight",
-   "non_negative": 1,
+   "label": "Tare Weight",
    "precision": "2",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -138,8 +143,8 @@
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Net Weight",
-   "non_negative": 1,
    "precision": "2",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -149,20 +154,11 @@
   },
   {
    "fieldname": "tolerance_in_",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Tolerance (in %)",
-   "non_negative": 1,
-   "reqd": 1,
+   "precision": "2",
+   "read_only": 1,
    "width": "25vh"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Gate Pass Out",
-   "print_hide": 1,
-   "read_only": 1
   },
   {
    "fieldname": "naming_series",
@@ -175,15 +171,35 @@
    "fieldname": "total_weight",
    "fieldtype": "Float",
    "label": "Total Weight",
-   "non_negative": 1,
    "precision": "2",
+   "read_only": 1,
    "reqd": 1
+  },
+  {
+   "fieldname": "tolerated_weight",
+   "fieldtype": "Float",
+   "label": "Tolerated Weight",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_bqaov",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Gate Pass Out",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-22 10:47:49.111834",
+ "modified": "2023-09-22 17:21:25.922969",
  "modified_by": "Administrator",
  "module": "vijaymamra",
  "name": "Gate Pass Out",

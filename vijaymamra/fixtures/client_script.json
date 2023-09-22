@@ -26,10 +26,10 @@
   "doctype": "Client Script",
   "dt": "Gate Pass Return",
   "enabled": 1,
-  "modified": "2023-09-21 16:58:23.710229",
+  "modified": "2023-09-22 16:03:37.407777",
   "module": "vijaymamra",
   "name": "Gate Pass Return",
-  "script": "frappe.ui.form.on('Gate Pass Return', {\n\tgate_pass_no:function(frm) {\n\t\tfrappe.call({\n\t\t    method:\"Ftach Data Of Gate Pass Master\",\n\t\t    args:{\"name\":frm.doc.gate_pass_no}\n\t\t}).then(records=>{\n\t\t    var data = records['record']\n\t\t    \n\t\t    data.forEach(function(obj){\n\t\t        var row = frm.add_child(\"items\")\n\t\t        row.item_code = obj.item_code;\n\t\t        row.item_name = obj.item_name;\n\t\t        row.qty = obj.qty;\n\t\t        row.description = obj.description;\n\t\t    })\n\t\t    frm.refresh_field(\"items\")\n\t\t})\n\t},\n\tbefore_save:function(frm){\n\t    var total_qty = 0\n\t    $.each(frm.doc.items || [], function(i,d){\n\t        total_qty += d.qty\n\t        frappe.call({\n\t            method:\"Status Update in Gate Master\",\n\t            args:{\"item_code\":d.item_code, 'parent':frm.doc.gate_pass_no, 'status':d.status}\n\t        })\n\t    })\n\t    frm.set_value(\"total_qty\",total_qty)\n\t},\n\ton_submit:function(frm){\n\t    frappe.call({\n\t        method:\"Gate Pass Master Status Update\",\n\t        args:{'name':frm.doc.gate_pass_no}\n\t    })\n\t},\n\trefresh:function(frm){\n\t    frm.set_query('gate_pass_no', function(doc, cdt, cdn) {\n            let d = locals[cdt][cdn];\n            return{\n\t\t\tfilters: {\n\t\t\t  'docstatus': 1, \n\t\t\t}\n            \t};\n\t    });\n\n\t}\n})",
+  "script": "frappe.ui.form.on('Gate Pass Return', {\n\tgate_pass_no:function(frm) {\n\t\tfrappe.call({\n\t\t    method:\"Ftach Data Of Gate Pass Master\",\n\t\t    args:{\"name\":frm.doc.gate_pass_no}\n\t\t}).then(records=>{\n\t\t    var data = records['record']\n\t\t    \n\t\t    frm.set_value(\"items\", 0)\n\t\t    data.forEach(function(obj){\n\t\t        var row = frm.add_child(\"items\")\n\t\t        row.item_code = obj.item_code;\n\t\t        row.item_name = obj.item_name;\n\t\t        row.qty = obj.qty;\n\t\t        row.description = obj.description;\n\t\t    })\n\t\t    frm.refresh_field(\"items\")\n\t\t})\n\t},\n\tbefore_save:function(frm){\n\t    var total_qty = 0\n\t    $.each(frm.doc.items || [], function(i,d){\n\t        total_qty += d.qty\n\t        frappe.call({\n\t            method:\"Status Update in Gate Master\",\n\t            args:{\"item_code\":d.item_code, 'parent':frm.doc.gate_pass_no, 'status':d.status}\n\t        })\n\t    })\n\t    frm.set_value(\"total_qty\",total_qty)\n\t},\n\ton_submit:function(frm){\n\t    frappe.call({\n\t        method:\"Gate Pass Master Status Update\",\n\t        args:{'name':frm.doc.gate_pass_no}\n\t    })\n\t},\n\trefresh:function(frm){\n\t    frm.set_query('gate_pass_no', function(doc, cdt, cdn) {\n            let d = locals[cdt][cdn];\n            return{\n\t\t\tfilters: {\n\t\t\t  'docstatus': 1, \n\t\t\t}\n            \t};\n\t    });\n\n\t}\n})",
   "view": "Form"
  },
  {
@@ -48,10 +48,10 @@
   "doctype": "Client Script",
   "dt": "Gate Pass Out",
   "enabled": 1,
-  "modified": "2023-09-21 18:46:29.878716",
+  "modified": "2023-09-22 16:50:53.339011",
   "module": "vijaymamra",
   "name": "Gate Pass Out Data Get",
-  "script": "frappe.ui.form.on('Gate Pass Out', {\n\tgate_pass_inwards:function(frm) {\n\t\tfrappe.call({\n\t\t    method: \"GatePassOUTWARDS\",\n\t\t    args:{\"gateID\": frm.doc.gate_pass_inwards}\n\t\t}).then (records=>{\n\t\t    var data = records[\"record\"]\n\t\t    data.forEach(function(obj){\n\t\t        frm.set_value(\"company_name\", obj.company_name)\n\t\t        frm.set_value(\"driver_name\", obj.driver_name)\n\t\t        frm.set_value(\"vehicle_number\", obj.vehicle_number)\n\t\t        frm.set_value(\"driver_contact_number\", obj.driver_contact_number)\n\t\t        frm.set_value(\"tier_weight\", obj.gross_weight)\n\t\t    })\n\t\t}) \n\t}\n})",
+  "script": "frappe.ui.form.on('Gate Pass Out', {\n\tgate_pass_inwards:function(frm) {\n\t\tfrappe.call({\n\t\t    method: \"GatePassOUTWARDS\",\n\t\t    args:{\"gateID\": frm.doc.gate_pass_inwards}\n\t\t}).then (records=>{\n\t\t    var data = records[\"record\"]\n\t\t    data.forEach(function(obj){\n\t\t        frm.set_value(\"company_name\", obj.company_name)\n\t\t        frm.set_value(\"driver_name\", obj.driver_name)\n\t\t        frm.set_value(\"vehicle_number\", obj.vehicle_number)\n\t\t        frm.set_value(\"driver_contact_number\", obj.driver_contact_number)\n\t\t        frm.set_value(\"tier_weight\", obj.tier_weight)\n\t\t    })\n\t\t}) \n\t}\n})",
   "view": "Form"
  },
  {
@@ -70,10 +70,10 @@
   "doctype": "Client Script",
   "dt": "Gate Pass Out",
   "enabled": 1,
-  "modified": "2023-09-22 11:46:50.147068",
+  "modified": "2023-09-22 17:25:23.682275",
   "module": "vijaymamra",
   "name": "Tolerance_Calculation",
-  "script": "frappe.ui.form.on('Gate Pass Out', {\n\tbefore_save:function(frm) {\n\t\tconst netWeight = frm.doc.net_weight || 0;\n        const totalWeight = frm.doc.total_weight || 0;\n        const tolerance = frm.doc.tolerance_in_ || 0;\n        const totalWeightUpper = totalWeight + (totalWeight * tolerance / 100);\n        const totalWeightLower = totalWeight - (totalWeight * tolerance / 100);\n        \n        if (frm.doc.net_weight >= totalWeightLower && frm.doc.net_weight <= totalWeightUpper) {\n            \n        } else {\n            frappe.throw(\"Your Tolerance Is Ou Of Range\");\n        }\n        // const tierWeight = frm.doc.tier_weight || 0;\n        // const grossWeight = netWeight + tierWeight\n        // frm.set_value(\"gross_weight\", grossWeight)\n\t},\n\tnet_weight:function(frm){\n\t    var gross_weight = frm.doc.net_weight - frm.doc.tier_weight\n\t    frm.set_value(\"gross_weight\",gross_weight)\n\t}\n})\n\nfrappe.ui.form.on('Invoice Details', {\n    invoice_number: function (frm) {\n        var total_weight = 0;\n        var promises = [];\n    \n        $.each(frm.doc.invoice_details || [], function (i, d) {\n            var promise = new Promise(function (resolve, reject) {\n                frappe.call({\n                    method: \"get_invoice_weight\",\n                    args: { 'si_name': d.invoice_number },\n                    callback: function (r) {\n                        r.data.forEach(function(obj){\n                            if (obj.total_qty) {\n                                d.weight = obj.total_qty;\n                                total_weight += d.weight;\n                                resolve();\n                            } else {\n                                reject();\n                            }\n                        })\n                        \n                    }\n                });\n            });\n    \n            promises.push(promise);\n        });\n        Promise.all(promises).then(function () {\n            frm.refresh_field(\"invoice_details\");\n            frm.set_value(\"total_weight\", total_weight);\n        }).catch(function () {\n        });\n    }\n\n})",
+  "script": "frappe.ui.form.on('Gate Pass Out', {\n\tbefore_save:function(frm) {\n\t\tconst netWeight = frm.doc.net_weight || 0;\n        const totalWeight = frm.doc.total_weight || 0;\n        const tolerance = frm.doc.tolerance_in_ || 0;\n        const totalWeightUpper = totalWeight + (totalWeight * tolerance / 100);\n        const totalWeightLower = totalWeight - (totalWeight * tolerance / 100);\n        \n        // if (frm.doc.net_weight >= totalWeightLower && frm.doc.net_weight <= totalWeightUpper) {\n            \n        // } else {\n        //     frappe.throw(\"Your Tolerance Is Out Of Range\");\n        // }\n\t},\n\tgross_weight:function(frm){\n\t    var net_weight = frm.doc.gross_weight - frm.doc.tier_weight\n\t    frm.set_value(\"net_weight\",net_weight)\n\t    var toleratedWeight = frm.doc.net_weight - frm.doc.total_weight;\n\t    frm.set_value(\"tolerated_weight\",toleratedWeight)\n\t    var toleratedpercent = (frm.doc.tolerated_weight / frm.doc.total_weight) * 100;\n\t    frm.set_value(\"tolerance_in_\",toleratedpercent);\n\t},\n\ton_submit:function(frm){\n\t    frappe.call({\n\t        method:\"gate pass in status update\",\n\t        args:{'gate_name':frm.doc.gate_pass_inwards}\n\t    })\n\t}\n})\n\nfrappe.ui.form.on('Invoice Details', {\n    invoice_number: function (frm) {\n        var total_weight = 0;\n        var promises = [];\n    \n        $.each(frm.doc.invoice_details || [], function (i, d) {\n            var promise = new Promise(function (resolve, reject) {\n                frappe.call({\n                    method: \"get_invoice_weight\",\n                    args: { 'si_name': d.invoice_number },\n                    callback: function (r) {\n                        r.data.forEach(function(obj){\n                            if (obj.total_net_weight) {\n                                d.weight = obj.total_net_weight;\n                                total_weight += d.weight;\n                                resolve();\n                            } else {\n                                reject();\n                            }\n                        })\n                        \n                    }\n                });\n            });\n    \n            promises.push(promise);\n        });\n        Promise.all(promises).then(function () {\n            frm.refresh_field(\"invoice_details\");\n            frm.set_value(\"total_weight\", total_weight);\n        }).catch(function () {\n        });\n    }\n\n})",
   "view": "Form"
  },
  {
@@ -86,5 +86,16 @@
   "name": "Delivery Note Get Truck No on so",
   "script": "frappe.ui.form.on('Delivery Note', {\n\trefresh:function(frm) {\n\t    if(frm.doc.custom_sales_order != undefined && frm.doc.custom_truck_no == undefined){\n\t        frappe.call({\n\t            method:\"get truck no\",\n\t            args:{'so_name':frm.doc.custom_sales_order}\n\t        }).then(records=>{\n\t            var data = records['data']\n\t            \n\t            data.forEach(function(obj){\n\t                frm.set_value(\"custom_truck_no\", obj.truck_no)\n\t            })\n\t        })\n\t    }\n\t\t\n\t}\n})",
   "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Gate Pass In",
+  "enabled": 1,
+  "modified": "2023-09-22 17:28:42.894108",
+  "module": "vijaymamra",
+  "name": "Gate Pass Status Update In List View",
+  "script": "frappe.listview_settings['Gate Pass In'] = {\n   has_indicator_for_cancelled: true,\n   has_indicator_for_Submitted: true,\n   get_indicator(doc)  {\n     \n       if (doc.docstatus == 1) {\n           return [__(\"Open\"), \"green\", \"docstatus,=,1\"];\n       }\n       else if (doc.docstatus == 3) {\n           return [__(\"Close\"), \"red\", \"docstatus,=,3\"];\n       }\n   },\n}\n",
+  "view": "List"
  }
 ]

@@ -230,5 +230,12 @@ fixtures = [
                 "vijaymamra"
             ]
         ]
-    ]}
+    ]},
+    {"dt": "Workspace", "filters": [
+        [
+            "module", "in", [
+                "vijaymamra"
+            ]
+        ]
+    ]},
 ]
