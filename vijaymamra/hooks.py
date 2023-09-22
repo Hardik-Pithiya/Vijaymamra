@@ -215,3 +215,20 @@ app_license = "MIT"
 # auth_hooks = [
 #	"vijaymamra.auth.validate"
 # ]
+
+fixtures = [
+    {"dt": "Client Script", "filters":[
+        [
+            "module", "in",[
+                "vijaymamra"
+            ]
+        ]
+    ]},
+    {"dt": "Server Script", "filters":[
+        [
+            "module", "in",[
+                "vijaymamra"
+            ]
+        ]
+    ]}
+]

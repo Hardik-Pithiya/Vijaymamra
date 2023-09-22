@@ -1,0 +1,209 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-09-21 17:30:26.290435",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "gate_pass_outwards_section",
+  "naming_series",
+  "gate_pass_inwards",
+  "column_break_ypvex",
+  "posting_date",
+  "posting_time",
+  "logistics_details_section",
+  "company_name",
+  "vehicle_number",
+  "column_break_11yru",
+  "driver_name",
+  "driver_contact_number",
+  "order_section",
+  "invoice_details",
+  "total_weight",
+  "actual_weight_section",
+  "tier_weight",
+  "column_break_keyqq",
+  "net_weight",
+  "column_break_0gbxs",
+  "gross_weight",
+  "more_info_section",
+  "tolerance_in_",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "gate_pass_outwards_section",
+   "fieldtype": "Section Break",
+   "label": "Gate Pass (Outwards)"
+  },
+  {
+   "fieldname": "gate_pass_inwards",
+   "fieldtype": "Link",
+   "label": "Gate Pass (Inwards)",
+   "options": "Gate Pass In",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ypvex",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "default": "Now",
+   "fieldname": "posting_time",
+   "fieldtype": "Time",
+   "label": "Posting Time"
+  },
+  {
+   "fieldname": "logistics_details_section",
+   "fieldtype": "Section Break",
+   "label": "Logistics Details"
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company Name"
+  },
+  {
+   "fieldname": "vehicle_number",
+   "fieldtype": "Data",
+   "label": "Vehicle Number"
+  },
+  {
+   "fieldname": "column_break_11yru",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "driver_name",
+   "fieldtype": "Data",
+   "label": "Driver Name"
+  },
+  {
+   "fieldname": "driver_contact_number",
+   "fieldtype": "Int",
+   "label": "Driver Contact Number"
+  },
+  {
+   "fieldname": "order_section",
+   "fieldtype": "Section Break",
+   "label": "Order"
+  },
+  {
+   "fieldname": "invoice_details",
+   "fieldtype": "Table",
+   "label": "Invoice Details",
+   "options": "Invoice Details"
+  },
+  {
+   "fieldname": "actual_weight_section",
+   "fieldtype": "Section Break",
+   "label": "Actual Weight"
+  },
+  {
+   "fieldname": "gross_weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Gross Weight",
+   "non_negative": 1,
+   "precision": "2",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_keyqq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tier_weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Tier Weight",
+   "non_negative": 1,
+   "precision": "2",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_0gbxs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "net_weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Net Weight",
+   "non_negative": 1,
+   "precision": "2",
+   "reqd": 1
+  },
+  {
+   "fieldname": "more_info_section",
+   "fieldtype": "Section Break",
+   "label": "More Info"
+  },
+  {
+   "fieldname": "tolerance_in_",
+   "fieldtype": "Int",
+   "label": "Tolerance (in %)",
+   "non_negative": 1,
+   "reqd": 1,
+   "width": "25vh"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Gate Pass Out",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "Gate-OUT-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_weight",
+   "fieldtype": "Float",
+   "label": "Total Weight",
+   "non_negative": 1,
+   "precision": "2",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-09-22 10:47:49.111834",
+ "modified_by": "Administrator",
+ "module": "vijaymamra",
+ "name": "Gate Pass Out",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
