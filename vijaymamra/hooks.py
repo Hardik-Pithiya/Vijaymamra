@@ -110,9 +110,9 @@ app_license = "MIT"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-#	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {	
+    "Customer" : "vijaymamra.vijaymamra.customer.Customer"
+}
 
 # Document Events
 # ---------------
@@ -232,6 +232,13 @@ fixtures = [
         ]
     ]},
     {"dt": "Workspace", "filters": [
+        [
+            "module", "in", [
+                "vijaymamra"
+            ]
+        ]
+    ]},
+    {"dt": "Property Setter", "filters": [
         [
             "module", "in", [
                 "vijaymamra"
