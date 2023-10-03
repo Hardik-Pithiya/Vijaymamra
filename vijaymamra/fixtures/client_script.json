@@ -59,10 +59,10 @@
   "doctype": "Client Script",
   "dt": "Stock Entry",
   "enabled": 1,
-  "modified": "2023-09-22 10:34:31.262621",
+  "modified": "2023-10-03 16:33:28.157696",
   "module": "vijaymamra",
   "name": "Get Truck No in Sales Order",
-  "script": "frappe.ui.form.on('Stock Entry', {\n\twork_order:function(frm) {\n\t\tfrappe.call({\n\t\t    method:\"Work Order Get Truck No In So\",\n\t\t    args:{'wo_name':frm.doc.work_order}\n\t\t}).then(records =>{\n\t\t    var data = records['data']\n\t\t    \n\t\t    data.forEach(function(obj){\n\t\t        frm.set_value(\"custom_truck_no\", obj.truck_no)\n\t\t    })\n\t\t    \n\t\t})\n\t}\n})",
+  "script": "frappe.ui.form.on('Stock Entry', {\n\twork_order:function(frm) {\n\t\tfrappe.call({\n\t\t    method:\"Work Order Get Truck No In So\",\n\t\t    args:{'wo_name':frm.doc.work_order}\n\t\t}).then(records =>{\n\t\t    var data = records['data']\n\t\t    \n\t\t    data.forEach(function(obj){\n\t\t        frm.set_value(\"custom_truck_no\", obj.truck_no)\n\t\t    })\n\t\t    \n\t\t})\n\t},\n\tonload:function(frm){\n\t    if(frm.doc.work_order != undefined)\n\t    frappe.call({\n\t\t    method:\"Work Order Get Truck No In So\",\n\t\t    args:{'wo_name':frm.doc.work_order}\n\t\t}).then(records =>{\n\t\t    var data = records['data']\n\t\t    \n\t\t    data.forEach(function(obj){\n\t\t        frm.set_value(\"custom_truck_no\", obj.truck_no)\n\t\t    })\n\t\t    \n\t\t})\n\t}\n})",
   "view": "Form"
  },
  {
