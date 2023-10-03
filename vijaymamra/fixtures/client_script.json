@@ -103,10 +103,10 @@
   "doctype": "Client Script",
   "dt": "Sales Invoice",
   "enabled": 1,
-  "modified": "2023-10-03 10:57:52.289692",
+  "modified": "2023-10-03 18:51:13.577515",
   "module": "vijaymamra",
   "name": "Supplier Wise Automatically Add Tax Stop",
-  "script": "frappe.ui.form.on('Sales Invoice', {\r    on_submit:function(frm){\r        frappe.call({\r            method:\"status update in purchase order truck\",\r            args:{\"delivery_name\":frm.doc.custom_deliver_note_no, \"truck_no\":frm.doc.custom_truck_no}\r        })\r    }\r});\r\r",
+  "script": "frappe.ui.form.on('Sales Invoice', {\r    naming_series:function(frm){\r        if(frm.doc.naming_series == \"GST-.YY.-\"){\r             frm.fields_dict['items'].grid.get_field('item_code').get_query = function (doc, cdt, cdn) {\r            var child = locals[cdt][cdn];\r            return {\r                filters: {\r                    'is_nil_exempt': 0,                    \r                    'is_purchase_item': 1,\r                }\r            };\r\r        };\r        frm.set_value(\"items\", 0)\r        frm.refresh_field(\"items\");\r        }\r        else if(frm.doc.naming_series == \"BOS-.YY.-\"){\r             frm.fields_dict['items'].grid.get_field('item_code').get_query = function (doc, cdt, cdn) {\r            var child = locals[cdt][cdn];\r            return {\r                filters: {\r                    'is_nil_exempt': 1,                    \r                    'is_purchase_item': 1,\r                }\r            };\r\r        };\r        frm.set_value(\"items\", 0)\r        frm.refresh_field(\"items\");\r        }\r    },\r    on_submit:function(frm){\r        frappe.call({\r            method:\"status update in purchase order truck\",\r            args:{\"delivery_name\":frm.doc.custom_deliver_note_no, \"truck_no\":frm.doc.custom_truck_no}\r        })\r    }\r});\r",
   "view": "Form"
  }
 ]
