@@ -37,10 +37,10 @@
   "doctype": "Client Script",
   "dt": "Production Plan",
   "enabled": 1,
-  "modified": "2023-09-21 14:26:15.409206",
+  "modified": "2023-10-03 10:17:10.506612",
   "module": "vijaymamra",
   "name": "Production Plan Customization",
-  "script": "frappe.ui.form.on('Production Plan', {\n\tafter_save:function(frm) {\n\t\tif(frm.is_new()){\n\t\t    $.each(frm.doc.sales_orders || [], function(i,d){\n\t\t        frappe.call({\n\t\t            method:\"truck no update in sales order\",\n\t\t            args:{'so_name':d.sales_order, 'truck_no':d.custom_truck_no, 'date':frm.doc.posting_date}\n\t\t        })\n\t\t    })\n\t\t}\n\t}\n})",
+  "script": "frappe.ui.form.on('Production Plan', {\n\ton_submit:function(frm) {\n// \t\tif(frm.is_new()){\n\t\t    $.each(frm.doc.sales_orders || [], function(i,d){\n\t\t        frappe.call({\n\t\t            method:\"truck no update in sales order\",\n\t\t            args:{'so_name':d.sales_order, 'truck_no':d.custom_truck_no, 'date':frm.doc.posting_date}\n\t\t        })\n\t\t    })\n// \t\t}\n\t}\n})",
   "view": "Form"
  },
  {
@@ -97,5 +97,16 @@
   "name": "Gate Pass Status Update In List View",
   "script": "frappe.listview_settings['Gate Pass In'] = {\n   has_indicator_for_cancelled: true,\n   has_indicator_for_Submitted: true,\n   get_indicator(doc)  {\n     \n       if (doc.docstatus == 1) {\n           return [__(\"Open\"), \"green\", \"docstatus,=,1\"];\n       }\n       else if (doc.docstatus == 3) {\n           return [__(\"Close\"), \"red\", \"docstatus,=,3\"];\n       }\n   },\n}\n",
   "view": "List"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Sales Invoice",
+  "enabled": 1,
+  "modified": "2023-10-03 10:57:52.289692",
+  "module": "vijaymamra",
+  "name": "Supplier Wise Automatically Add Tax Stop",
+  "script": "frappe.ui.form.on('Sales Invoice', {\r    on_submit:function(frm){\r        frappe.call({\r            method:\"status update in purchase order truck\",\r            args:{\"delivery_name\":frm.doc.custom_deliver_note_no, \"truck_no\":frm.doc.custom_truck_no}\r        })\r    }\r});\r\r",
+  "view": "Form"
  }
 ]

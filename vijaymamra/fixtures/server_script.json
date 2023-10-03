@@ -142,5 +142,21 @@
   "reference_doctype": null,
   "script": "name = frappe.form_dict['gate_name']\n\nfrappe.db.set_value(\"Gate Pass In\", name, 'docstatus', 3)",
   "script_type": "API"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": "status update in purchase order truck",
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "event_frequency": "All",
+  "modified": "2023-10-03 10:57:43.504243",
+  "module": "vijaymamra",
+  "name": "status update in purchase order truck",
+  "reference_doctype": null,
+  "script": "delivery_name = str(frappe.form_dict['delivery_name'])\ntruck_no = str(frappe.form_dict['truck_no'])\n\n\nsales_name = frappe.db.sql(\"select custom_sales_order from `tabDelivery Note` where name=%s \", delivery_name)\ntruck_name = frappe.db.sql(\"select name from `tabTruck Details` where parent=%s and truck_no=%s and status='Not Delivered'\", (sales_name[0][0], truck_no))\n\nfrappe.db.set_value(\"Truck Details\", truck_name[0][0], 'status', \"Delivered\")",
+  "script_type": "API"
  }
 ]
