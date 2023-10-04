@@ -108,5 +108,27 @@
   "name": "Supplier Wise Automatically Add Tax Stop",
   "script": "frappe.ui.form.on('Sales Invoice', {\r    naming_series:function(frm){\r        if(frm.doc.naming_series == \"GST-.YY.-\"){\r             frm.fields_dict['items'].grid.get_field('item_code').get_query = function (doc, cdt, cdn) {\r            var child = locals[cdt][cdn];\r            return {\r                filters: {\r                    'is_nil_exempt': 0,                    \r                    'is_purchase_item': 1,\r                }\r            };\r\r        };\r        frm.set_value(\"items\", 0)\r        frm.refresh_field(\"items\");\r        }\r        else if(frm.doc.naming_series == \"BOS-.YY.-\"){\r             frm.fields_dict['items'].grid.get_field('item_code').get_query = function (doc, cdt, cdn) {\r            var child = locals[cdt][cdn];\r            return {\r                filters: {\r                    'is_nil_exempt': 1,                    \r                    'is_purchase_item': 1,\r                }\r            };\r\r        };\r        frm.set_value(\"items\", 0)\r        frm.refresh_field(\"items\");\r        }\r    },\r    on_submit:function(frm){\r        frappe.call({\r            method:\"status update in purchase order truck\",\r            args:{\"delivery_name\":frm.doc.custom_deliver_note_no, \"truck_no\":frm.doc.custom_truck_no}\r        })\r    }\r});\r",
   "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Purchase Order",
+  "enabled": 1,
+  "modified": "2023-10-04 15:14:30.832088",
+  "module": "vijaymamra",
+  "name": "Purchase Order Customisation",
+  "script": "frappe.ui.form.on('Purchase Order Item', {\n\tcustom_rate_per_kg:function(frm) {\n\t    var total_rate = 0.0\n\t\t$.each(frm.doc.items || [], function(i,d){\n\t\t    var rate = d.custom_rate_per_kg * d.weight_per_unit\n\t\t    d.rate = rate\n\t\t    d.amount = d.rate * d.qty\n\t\t    total_rate += d.amount\n\t\t})\n\t\tfrm.set_value('total', total_rate)\n\t\tfrm.refresh_field(\"items\")\n\t}\n})",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Sales Order",
+  "enabled": 1,
+  "modified": "2023-10-04 16:09:37.415749",
+  "module": "vijaymamra",
+  "name": "Sales order Customization",
+  "script": "frappe.ui.form.on('Sales Order Item', {\n\tcustom_rate_per_kg:function(frm) {\n\t    var total_rate = 0.0\n\t\t$.each(frm.doc.items || [], function(i,d){\n\t\t    var rate = d.custom_rate_per_kg * d.weight_per_unit\n\t\t    d.rate = rate\n\t\t    d.amount = d.rate * d.qty\n\t\t    total_rate += d.amount\n\t\t})\n\t\tfrm.set_value('total', total_rate)\n\t\tfrm.refresh_field(\"items\")\n\t}\n})",
+  "view": "Form"
  }
 ]
