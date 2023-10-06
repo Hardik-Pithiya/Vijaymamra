@@ -111,7 +111,8 @@ app_license = "MIT"
 # Override standard doctype classes
 
 override_doctype_class = {	
-    "Customer" : "vijaymamra.vijaymamra.customer.Customer"
+    "Customer" : "vijaymamra.vijaymamra.customer.Customer",
+    "Supplier" : "vijaymamra.vijaymamra.supplier.Supplier"
 }
 
 # Document Events
