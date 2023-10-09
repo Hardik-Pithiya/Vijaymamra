@@ -246,4 +246,18 @@ fixtures = [
             ]
         ]
     ]},
+    {"dt": "Print Format", "filters": [
+        [
+            "module", "in", [
+                "vijaymamra"
+            ]
+        ]
+    ]},
+    {"dt": "Letter Head", "filters": [
+        [
+            "name", "in", [
+                "Vijay Mamra"
+            ]
+        ]
+    ]},
 ]

@@ -114,10 +114,10 @@
   "doctype": "Client Script",
   "dt": "Purchase Order",
   "enabled": 1,
-  "modified": "2023-10-06 16:31:38.103950",
+  "modified": "2023-10-09 13:22:02.485359",
   "module": "vijaymamra",
   "name": "Purchase Order Customisation",
-  "script": "frappe.ui.form.on('Purchase Order Item', {\n\tcustom_rate_per_kg:function(frm) {\n\t    var total_rate = 0.0\n\t\t$.each(frm.doc.items || [], function(i,d){\n\t\t    if(d.custom_rate_per_kg > 150){\n\t\t        d.rate = d.custom_rate_per_kg / 20\n\t\t    }\n\t\t    else{\n\t\t        d.rate = d.custom_rate_per_kg\n\t\t    }\n\t\t  //  var rate = d.custom_rate_per_kg * d.weight_per_unit\n\t\t  //  d.rate = rate\n\t\t    d.amount = d.rate * d.qty\n\t\t    total_rate += d.amount\n\t\t})\n\t\tfrm.set_value('total', total_rate)\n\t\tfrm.refresh_field(\"items\")\n\t},\n\titem_code: function(frm) {\n    \n    var isNilExemptChecked = false;\n    \n    $.each(frm.doc.items || [], function(i, d) {\n      if (d.is_nil_exempt == 1) {\n        isNilExemptChecked = true;\n        return false; \n      }\n    });\n\n    \n    if (isNilExemptChecked) {\n      $.each(frm.doc.taxes || [], function(j, tax) {\n        if (tax.account_head.toUpperCase().includes('GST')) {\n          frappe.model.set_value(tax.doctype, tax.name, 'rate', 0);\n        }\n      });\n      \n      frm.refresh_fields('taxes');\n    }\n  }\n})",
+  "script": "frappe.ui.form.on('Purchase Order Item', {\n\tcustom_rate_per_kg:function(frm) {\n\t    var total_rate = 0.0\n\t\t$.each(frm.doc.items || [], function(i,d){\n\t\t    if(d.custom_rate_per_kg > 150){\n\t\t        d.rate = d.custom_rate_per_kg / 20\n\t\t    }\n\t\t    else{\n\t\t        d.rate = d.custom_rate_per_kg\n\t\t    }\n\t\t    d.amount = d.rate * d.qty\n\t\t    total_rate += d.amount\n\t\t})\n\t\tfrm.set_value('total', total_rate);\n\t\tfrm.refresh_field(\"items\");\n\t\tcur_frm.cscript.calculate_taxes_and_totals();\n\t\tfrm.refresh_fields();\n\t},\n\titem_code: function(frm) {\n    \n    var isNilExemptChecked = false;\n    \n    $.each(frm.doc.items || [], function(i, d) {\n      if (d.is_nil_exempt == 1) {\n        isNilExemptChecked = true;\n        return false; \n      }\n    });\n\n    \n    if (isNilExemptChecked) {\n      $.each(frm.doc.taxes || [], function(j, tax) {\n        if (tax.account_head.toUpperCase().includes('GST')) {\n          frappe.model.set_value(tax.doctype, tax.name, 'rate', 0);\n        }\n      });\n      \n      frm.refresh_fields('taxes');\n    }\n  }\n})",
   "view": "Form"
  },
  {
@@ -125,10 +125,10 @@
   "doctype": "Client Script",
   "dt": "Sales Order",
   "enabled": 1,
-  "modified": "2023-10-06 16:29:04.527550",
+  "modified": "2023-10-09 13:30:56.700393",
   "module": "vijaymamra",
   "name": "Sales order Customization",
-  "script": "frappe.ui.form.on('Sales Order Item', {\n\tcustom_rate_per_kg:function(frm) {\n\t    var total_rate = 0.0\n\t\t$.each(frm.doc.items || [], function(i,d){\n\t\t    if(d.custom_rate_per_kg > 150)\n\t\t    {\n\t\t        d.rate = d.custom_rate_per_kg / 20\n\t\t    }\n\t\t    else{\n\t\t        d.rate = d.custom_rate_per_kg\n\t\t    }\n\t\t  //  var rate = d.custom_rate_per_kg * d.weight_per_unit\n\t\t  //  d.rate = rate\n\t\t    d.amount = d.rate * d.qty\n\t\t    total_rate += d.amount\n\t\t})\n\t\tfrm.set_value('total', total_rate)\n\t\tfrm.refresh_field(\"items\")\n\t}\n})\n\n\nfrappe.ui.form.on('Sales Order Item', {\n  item_code: function(frm) {\n    \n    var isNilExemptChecked = false;\n    \n    $.each(frm.doc.items || [], function(i, d) {\n      if (d.is_nil_exempt == 1) {\n        isNilExemptChecked = true;\n        return false; \n      }\n    });\n\n    \n    if (isNilExemptChecked) {\n      $.each(frm.doc.taxes || [], function(j, tax) {\n        if (tax.account_head.toUpperCase().includes('GST')) {\n          frappe.model.set_value(tax.doctype, tax.name, 'rate', 0);\n        }\n      });\n      \n      frm.refresh_fields('taxes');\n    }\n  }\n});\n",
+  "script": "frappe.ui.form.on('Sales Order Item', {\n\tcustom_rate_per_kg:function(frm) {\n\t    var total_rate = 0.0\n\t\t$.each(frm.doc.items || [], function(i,d){\n\t\t    if(d.custom_rate_per_kg > 150)\n\t\t    {\n\t\t        d.rate = d.custom_rate_per_kg / 20\n\t\t    }\n\t\t    else{\n\t\t        d.rate = d.custom_rate_per_kg\n\t\t    }\n\t\t    d.amount = d.rate * d.qty\n\t\t    total_rate += d.amount\n\t\t})\n\t\tfrm.set_value('total', total_rate)\n\t\tfrm.refresh_field(\"items\")\n\t\tcur_frm.cscript.calculate_taxes_and_totals();\n\t\tfrm.refresh_field()\n\t}\n})\n\n\nfrappe.ui.form.on('Sales Order Item', {\n  item_code: function(frm) {\n    \n    var isNilExemptChecked = false;\n    \n    $.each(frm.doc.items || [], function(i, d) {\n      if (d.is_nil_exempt == 1) {\n        isNilExemptChecked = true;\n        return false; \n      }\n    });\n\n    \n    if (isNilExemptChecked) {\n      $.each(frm.doc.taxes || [], function(j, tax) {\n        if (tax.account_head.toUpperCase().includes('GST')) {\n          frappe.model.set_value(tax.doctype, tax.name, 'rate', 0);\n        }\n      });\n      \n      frm.refresh_fields('taxes');\n    }\n  }\n});\n",
   "view": "Form"
  },
  {
@@ -136,10 +136,10 @@
   "doctype": "Client Script",
   "dt": "Supplier",
   "enabled": 1,
-  "modified": "2023-10-06 12:36:18.170332",
+  "modified": "2023-10-09 11:48:37.191105",
   "module": "vijaymamra",
   "name": "Supplier Master Customisation",
-  "script": "frappe.ui.form.on('Supplier', {\n\tsupplier_group:function(frm) {\n\t\tvar list = frm.doc.supplier_group.split(' ')\n\t\tvar series = \"\"\n\t\tlist.forEach(function(obj){\n\t\t    series += obj[0][0]\n\t\t})\n\t\tset_field_options(\"naming_series\", [series + \"-.YY.-.#\"])\n\t\tvar a = series + \"-.YY.-.#\"\n\t\tfrm.set_value(\"naming_series\",a)\n\t\tfrm.set_value(\"custom_series\",a)\n\t}\n})",
+  "script": "frappe.ui.form.on('Supplier', {\n\tsupplier_group:function(frm) {\n\t    if(frm.doc.supplier_group == \"Brokers\")\n\t    {\n\t        set_field_options(\"naming_series\", [\"BR.###\"])\n    \t\tvar a =  \"BR.###\"\n    \t\tfrm.set_value(\"naming_series\",a)\n    \t\tfrm.set_value(\"custom_series\",a)\n\t    }\n\t    else if(frm.doc.supplier_group == \"Machine Hardware and Electrical\"){\n\t        set_field_options(\"naming_series\", [\"MH.###\"])\n    \t\tvar a =  \"MH.###\"\n    \t\tfrm.set_value(\"naming_series\",a)\n    \t\tfrm.set_value(\"custom_series\",a)\n\t    }\n\t    else if(frm.doc.supplier_group == \"Makkai Poha\"){\n\t        set_field_options(\"naming_series\", [\"CF.###\"])\n    \t\tvar a =  \"CF.###\"\n    \t\tfrm.set_value(\"naming_series\",a)\n    \t\tfrm.set_value(\"custom_series\",a)\n\t    }\n\t    else if(frm.doc.supplier_group == \"Poha Supplier\"){\n\t        set_field_options(\"naming_series\", [\"POS.###\"])\n    \t\tvar a =  \"POS.###\"\n    \t\tfrm.set_value(\"naming_series\",a)\n    \t\tfrm.set_value(\"custom_series\",a)\n\t    }\n\t    else if(frm.doc.supplier_group == \"Transport\"){\n\t        set_field_options(\"naming_series\", [\"TR.###\"])\n    \t\tvar a =  \"TR.###\"\n    \t\tfrm.set_value(\"naming_series\",a)\n    \t\tfrm.set_value(\"custom_series\",a)\n\t    }\n\t    else{\n    \t\tvar list = frm.doc.supplier_group.split(' ')\n    \t\tvar series = \"\"\n    \t\tlist.forEach(function(obj){\n    \t\t    series += obj[0][0]\n    \t\t})\n    \t\tset_field_options(\"naming_series\", [series + \".###\"])\n    \t\tvar a = series + \".###\"\n    \t\tfrm.set_value(\"naming_series\",a)\n    \t\tfrm.set_value(\"custom_series\",a)\n\t    }\n\t}\n})",
   "view": "Form"
  },
  {
