@@ -147,10 +147,10 @@
   "doctype": "Client Script",
   "dt": "Purchase Invoice",
   "enabled": 1,
-  "modified": "2023-10-06 16:31:56.060379",
+  "modified": "2023-10-09 16:49:07.713672",
   "module": "vijaymamra",
   "name": "Purchase Invoice Customisation",
-  "script": "frappe.ui.form.on('Purchase Invoice', {\n\tonload:function(frm) {\n\t\tif(frm.doc.is_return == 1){\n\t\t    frm.set_value(\"naming_series\", \"PRET-.YY.-\")\n\t\t}\n\t}\n})\n\nfrappe.ui.form.on('Purchase Invoice Item', {\n\titem_code: function(frm) {\n    \n    var isNilExemptChecked = false;\n    \n    $.each(frm.doc.items || [], function(i, d) {\n      if (d.is_nil_exempt == 1) {\n        isNilExemptChecked = true;\n        return false; \n      }\n    });\n\n    \n    if (isNilExemptChecked) {\n      $.each(frm.doc.taxes || [], function(j, tax) {\n        if (tax.account_head.toUpperCase().includes('GST')) {\n          frappe.model.set_value(tax.doctype, tax.name, 'rate', 0);\n        }\n      });\n      \n      frm.refresh_fields('taxes');\n    }\n  }\n})",
+  "script": "frappe.ui.form.on('Purchase Invoice', {\n\tonload:function(frm) {\n\t\tif(frm.doc.is_return == 1){\n\t\t    frm.set_value(\"naming_series\", \"PRET-.YY.-\")\n\t\t}\n\t},\n\tcustom_vehicle_no:function(frm){\n\t    frm.set_value(\"vehicle_no\", frm.doc.custom_vehicle_no)\n\t}\n})\n\nfrappe.ui.form.on('Purchase Invoice Item', {\n\titem_code: function(frm) {\n    \n    var isNilExemptChecked = false;\n    \n    $.each(frm.doc.items || [], function(i, d) {\n      if (d.is_nil_exempt == 1) {\n        isNilExemptChecked = true;\n        return false; \n      }\n    });\n\n    \n    if (isNilExemptChecked) {\n      $.each(frm.doc.taxes || [], function(j, tax) {\n        if (tax.account_head.toUpperCase().includes('GST')) {\n          frappe.model.set_value(tax.doctype, tax.name, 'rate', 0);\n        }\n      });\n      \n      frm.refresh_fields('taxes');\n    }\n  }\n})",
   "view": "Form"
  },
  {
