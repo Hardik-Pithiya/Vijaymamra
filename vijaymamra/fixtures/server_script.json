@@ -163,16 +163,16 @@
   "allow_guest": 0,
   "api_method": "tax rate get into the tax template",
   "cron_format": null,
-  "disabled": 1,
+  "disabled": 0,
   "docstatus": 0,
   "doctype": "Server Script",
   "doctype_event": "Before Insert",
   "event_frequency": "All",
-  "modified": "2023-10-10 12:26:44.207410",
+  "modified": "2023-10-10 15:47:32.847736",
   "module": "vijaymamra",
   "name": "tax rate get into the tax template",
   "reference_doctype": null,
-  "script": "name = frappe.form_dict['name']\n\ndata = frappe.db.sql(\" selct custom_cgst_sgst, custom_igst from `tabItem Tax Template` where name = %s \",name)\n\nrate_data = frappe.db.sql(\" select tax_rate from `tabtaxes` where parent=%s \",name, as_dict=True)\n\nfrappe.response['data']=data\nfrappe.response['rate_data']=rate_data",
+  "script": "name = frappe.form_dict['name']\n\ndata = frappe.db.sql(\" select custom_cgst_sgst, custom_igst from `tabItem Tax Template` where name = %s \",name)\n\nrate_data = frappe.db.sql(\" select tax_rate from `tabItem Tax Template Detail` where parent=%s \",name, as_dict=True)\n\nfrappe.response['data']=data\nfrappe.response['rate_data']=rate_data",
   "script_type": "API"
  }
 ]

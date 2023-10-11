@@ -1,0 +1,42 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-10-10 15:51:48.846780",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "persentage",
+  "dayweek",
+  "weight"
+ ],
+ "fields": [
+  {
+   "fieldname": "persentage",
+   "fieldtype": "Float",
+   "label": " Persentage"
+  },
+  {
+   "fieldname": "dayweek",
+   "fieldtype": "Data",
+   "label": " Day/Week"
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Data",
+   "label": " Weight"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-10-10 16:28:31.190504",
+ "modified_by": "Administrator",
+ "module": "vijaymamra",
+ "name": "Payment Condition",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
