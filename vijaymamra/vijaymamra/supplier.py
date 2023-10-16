@@ -41,8 +41,49 @@ class Supplier(TransactionBase):
 
 	def autoname(self):
 		supp_master_name = frappe.defaults.get_global_default("supp_master_name")
-		if supp_master_name == "Supplier Name":		
-			set_name_by_naming_series(self)			
+		if supp_master_name == "Supplier Name":
+			if self.supplier_group == "Brokers":
+				value = "BR.###"	
+				
+				self.naming_series = value
+				self.custom_series = value
+
+			elif self.supplier_group == "Machine Hardware and Electrical":
+				value = "MH.###"	
+				
+				self.naming_series = value
+				self.custom_series = value			
+			elif self.supplier_group == "Makkai Poha":
+				value = "CF.###"
+
+				self.naming_series = value
+				self.custom_series = value
+			elif self.supplier_group == "Poha Supplier":
+				value = "POS.###"
+
+				self.naming_series = value
+				self.custom_series = value
+
+			elif self.supplier_group == "Transport":
+				value = "TR.###"
+
+				self.naming_series = value
+				self.custom_series = value
+
+			else:
+				lists = self.supplier_group
+				lists1 = lists.split(" ")
+				series = ""
+				
+				for word in lists1:
+					series += word[0]
+				
+				value = series + ".###" 
+				self.custom_series = value
+				self.naming_series = value
+				
+			set_name_by_naming_series(self)    	
+						
 		elif supp_master_name == "Naming Series":			
 			self.name = self.supplier_name
 		else:
