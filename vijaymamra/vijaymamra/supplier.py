@@ -43,32 +43,38 @@ class Supplier(TransactionBase):
 		supp_master_name = frappe.defaults.get_global_default("supp_master_name")
 		if supp_master_name == "Supplier Name":
 			if self.supplier_group == "Brokers":
-				value = "BR.###"	
+				value = "BR.#####"	
 				
 				self.naming_series = value
 				self.custom_series = value
 
 			elif self.supplier_group == "Machine Hardware and Electrical":
-				value = "MH.###"	
+				value = "MH.#####"	
 				
 				self.naming_series = value
 				self.custom_series = value			
 			elif self.supplier_group == "Makkai Poha":
-				value = "CF.###"
+				value = "CF.#####"
 
 				self.naming_series = value
 				self.custom_series = value
 			elif self.supplier_group == "Poha Supplier":
-				value = "POS.###"
+				value = "POS.#####"
 
 				self.naming_series = value
 				self.custom_series = value
 
 			elif self.supplier_group == "Transport":
-				value = "TR.###"
+				value = "TR.#####"
 
 				self.naming_series = value
 				self.custom_series = value
+
+			elif self.supplier_group == "Labour":
+				value = "LR.#####"
+
+				self.naming_series = value
+				self.custom_series = value			
 
 			else:
 				lists = self.supplier_group
@@ -78,7 +84,7 @@ class Supplier(TransactionBase):
 				for word in lists1:
 					series += word[0]
 				
-				value = series + ".###" 
+				value = series + ".#####" 
 				self.custom_series = value
 				self.naming_series = value
 				
