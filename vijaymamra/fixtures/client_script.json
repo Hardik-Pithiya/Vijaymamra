@@ -163,5 +163,27 @@
   "name": "Purchase Receipt Customisation",
   "script": "frappe.ui.form.on('Purchase Receipt Item', {\n\titem_code: function(frm) {\n    \n    var isNilExemptChecked = false;\n    \n    $.each(frm.doc.items || [], function(i, d) {\n      if (d.is_nil_exempt == 1) {\n        isNilExemptChecked = true;\n        return false; \n      }\n    });\n\n    \n    if (isNilExemptChecked) {\n      $.each(frm.doc.taxes || [], function(j, tax) {\n        if (tax.account_head.toUpperCase().includes('GST')) {\n          frappe.model.set_value(tax.doctype, tax.name, 'rate', 0);\n        }\n      });\n      \n      frm.refresh_fields('taxes');\n    }\n  },\n  \tcustom_rate_per_kg:function(frm) {\n\t    var total_rate = 0.0\n\t\t$.each(frm.doc.items || [], function(i,d){\n\t\t    if(d.custom_rate_per_kg > 150){\n\t\t        d.rate = d.custom_rate_per_kg / 20\n\t\t    }\n\t\t    else{\n\t\t        d.rate = d.custom_rate_per_kg\n\t\t    }\n\t\t    d.amount = d.rate * d.qty\n\t\t    total_rate += d.amount\n\t\t})\n\t\tfrm.set_value('total', total_rate);\n\t\tfrm.refresh_field(\"items\");\n\t\tcur_frm.cscript.calculate_taxes_and_totals();\n\t\tfrm.refresh_fields();\n\t},\n})\nfrappe.ui.form.on('Purchase Receipt',{\n      onload:function(frm){\n        frm.set_query('custom_broker', function(doc, cdt, cdn) {\n            let d = locals[cdt][cdn];\n            return{\n\t\t\tfilters: {\n\t\t\t  'supplier_group': 'Brokers', \n\t\t\t}\n            \t};\n\t    });\n    }\n})",
   "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Journal Entry",
+  "enabled": 1,
+  "modified": "2024-02-02 15:56:29.977030",
+  "module": "vijaymamra",
+  "name": "Get Account Payable in accounting entries table",
+  "script": "frappe.ui.form.on('Journal Entry Account', {\n    party: function(frm, cdt, cdn) {\n        var child = locals[cdt][cdn];\n\n        if (child.party_type == 'Employee') {\n            frappe.call({\n                method: 'frappe.client.get_list',\n                args: {\n                    doctype: \"Employee\",\n                    filters: {\n                        name: child.party,\n                    },\n                    fields: [\"custom_payable_account\"]\n                },\n                callback: function(response) {\n                    console.log(response.message[0].custom_payable_account);\n                    frappe.model.set_value(cdt, cdn, 'account', response.message[0].custom_payable_account);\n                    frm.fields_dict['accounts'].grid.refresh();\n                    frm.fields_dict['accounts'].grid.get_field('party_type').refresh();\n                }\n            });\n        }\n    }\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Employee",
+  "enabled": 1,
+  "modified": "2024-02-02 15:57:01.503805",
+  "module": "vijaymamra",
+  "name": "Add custom button to show general ledger report",
+  "script": "frappe.ui.form.on('Employee', {\n\trefresh(frm) {\n        frm.add_custom_button(__('View Ledger'), function () {\n\t\t\t\tfrappe.set_route('query-report', 'General Ledger',\n\t\t\t\t\t{ party_type: 'Employee', party: frm.doc.name, party_name: frm.doc.employee_name });\n\t\t\t});\n\t}\n})",
+  "view": "Form"
  }
 ]
