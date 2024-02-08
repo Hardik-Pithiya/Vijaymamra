@@ -19,5 +19,26 @@
   "modified": "2023-10-20 10:16:42.753187",
   "name": "Vijay Mamra",
   "source": "HTML"
+ },
+ {
+  "align": "Right",
+  "content": "<div style=\"text-align: right;\">\n<img alt=\"Vijay Mamra Private Limited\" height=\"120.0\" src=\"/files/vijay logo.png\" style=\"height: 120.0px;\">\n</div>",
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Letter Head",
+  "footer": "",
+  "footer_align": "Left",
+  "footer_image": null,
+  "footer_image_height": 0.0,
+  "footer_image_width": 0.0,
+  "footer_source": "HTML",
+  "image": "/files/vijay logo.png",
+  "image_height": 120.0,
+  "image_width": 120.0,
+  "is_default": 1,
+  "letter_head_name": "Vijay Mamra Private Limited",
+  "modified": "2023-10-20 10:19:55.968535",
+  "name": "Vijay Mamra Private Limited",
+  "source": "Image"
  }
 ]

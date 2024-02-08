@@ -185,5 +185,27 @@
   "name": "Add custom button to show general ledger report",
   "script": "frappe.ui.form.on('Employee', {\n\trefresh(frm) {\n        frm.add_custom_button(__('View Ledger'), function () {\n\t\t\t\tfrappe.set_route('query-report', 'General Ledger',\n\t\t\t\t\t{ party_type: 'Employee', party: frm.doc.name, party_name: frm.doc.employee_name });\n\t\t\t});\n\t}\n})",
   "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Packing Slip",
+  "enabled": 1,
+  "modified": "2024-02-08 15:25:11.825913",
+  "module": "vijaymamra",
+  "name": "Packing Slip customization",
+  "script": "frappe.ui.form.on('Packing Slip', {\n\tdelivery_note:function(frm) {\n\t\tif(frm.is_new()){\n            frm.set_query('item_code', 'items', function (doc, cdt, cdn) {\n                let d = locals[cdt][cdn];\n                return {\n                    filters: {\n                        'is_stock_item': 1,\n                    }\n                };\n            });\n           \n            cur_frm.clear_table(\"items\");\n            frm.refresh_field(\"items\");\n            frm.refresh()\n        }\n\t},\n})\n\nfrappe.ui.form.on('Packing Slip', {\n    before_save:function(frm){\n        $.each(frm.doc.items || [], function(i,d){\n\t        var total_weight = d.net_weight * d.qty\n\t        d.custom_total_weight = total_weight\n\t    })\n\t    frm.refresh_field(\"items\")\n    }\n})\n",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Sales Invoice",
+  "enabled": 1,
+  "modified": "2024-02-08 15:26:11.196753",
+  "module": "vijaymamra",
+  "name": "Sales Invoice Customisation",
+  "script": "frappe.ui.form.on('Sales Invoice', {\n    onload: function(frm) {\n        var naming_series = frm.doc.naming_series;\n            if(frm.is_new() && naming_series == \"GST-.YY.-\") {\n                setTimeout(function() {\n                    frm.set_query('item_code', 'items', function (doc, cdt, cdn) {\n                        return {\n                            filters: {\n                                \"is_sales_item\": 1,\n                                \"is_nil_exempt\": 0,\n                            }\n                        };\n                    });\n                }, 100);\n                \n                cur_frm.clear_table(\"items\");\n                frm.refresh_field(\"items\");\n                frm.refresh();\n            }\n    },\n\n\tnaming_series:function(frm){\n\t    var naming_series = frm.doc.naming_series;\n\t    if(frm.is_new() && naming_series == \"GST-.YY.-\"){\n            frm.set_query('item_code', 'items', function (doc, cdt, cdn) {\n                return {\n                    filters: {\n                        \"is_sales_item\": 1,\n                        \"is_nil_exempt\": 0,\n                    }\n                };\n            });\n           \n            cur_frm.clear_table(\"items\");\n            frm.refresh_field(\"items\");\n            frm.refresh()\n        }\n        else if(frm.is_new() && naming_series == \"GST-.YY.-\"){\n            frm.set_query('item_code', 'items', function (doc, cdt, cdn) {\n                return {\n                    filters: {\n                        \"is_sales_item\": 1,\n                        \"is_nil_exempt\": 1,\n                    }\n                };\n            });\n           \n            cur_frm.clear_table(\"items\");\n            frm.refresh_field(\"items\");\n            frm.refresh()\n        }\n\t},\n\tcustom_truck_no:function(frm){\n\t    frm.set_value(\"vehicle_no\", frm.doc.custom_truck_no)\n\t}\n})",
+  "view": "Form"
  }
 ]

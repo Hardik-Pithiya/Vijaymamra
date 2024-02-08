@@ -112,7 +112,8 @@ app_license = "MIT"
 
 override_doctype_class = {	
     "Customer" : "vijaymamra.vijaymamra.customer.Customer",
-    "Supplier" : "vijaymamra.vijaymamra.supplier.Supplier"
+    "Supplier" : "vijaymamra.vijaymamra.supplier.Supplier",
+    "Packing Slip": "vijaymamra.vijaymamra.packing_slip.PackingSlip",
 }
 
 # Document Events
@@ -256,7 +257,7 @@ fixtures = [
     {"dt": "Letter Head", "filters": [
         [
             "name", "in", [
-                "Vijay Mamra"
+                "Vijay Mamra", "Vijay Mamra Private Limited"
             ]
         ]
     ]},
