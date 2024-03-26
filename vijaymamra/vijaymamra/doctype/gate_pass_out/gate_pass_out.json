@@ -199,7 +199,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-22 17:21:25.922969",
+ "modified": "2024-03-26 16:45:47.686257",
  "modified_by": "Administrator",
  "module": "vijaymamra",
  "name": "Gate Pass Out",
@@ -216,6 +216,7 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],
