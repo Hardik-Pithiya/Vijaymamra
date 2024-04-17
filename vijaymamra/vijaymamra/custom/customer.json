@@ -336,7 +336,7 @@
    "_comments": null,
    "_liked_by": null,
    "_user_tags": null,
-   "creation": "2023-09-26 18:39:48.637368",
+   "creation": "2024-04-17 12:56:32.516233",
    "default_value": null,
    "doc_type": "Customer",
    "docstatus": 0,
@@ -344,7 +344,7 @@
    "field_name": "naming_series",
    "idx": 0,
    "is_system_generated": 0,
-   "modified": "2023-09-26 18:39:48.637368",
+   "modified": "2024-04-17 12:56:32.516233",
    "modified_by": "Administrator",
    "module": null,
    "name": "Customer-naming_series-default",
@@ -352,14 +352,14 @@
    "property": "default",
    "property_type": "Text",
    "row_name": null,
-   "value": ".{territory}.-.{.#}."
+   "value": ".{territory}./.{.#}."
   },
   {
    "_assign": null,
    "_comments": null,
    "_liked_by": null,
    "_user_tags": null,
-   "creation": "2023-09-26 18:39:48.585695",
+   "creation": "2024-04-17 12:56:32.461187",
    "default_value": null,
    "doc_type": "Customer",
    "docstatus": 0,
@@ -367,7 +367,7 @@
    "field_name": "naming_series",
    "idx": 0,
    "is_system_generated": 0,
-   "modified": "2023-09-26 18:39:48.585695",
+   "modified": "2024-04-17 12:56:32.461187",
    "modified_by": "Administrator",
    "module": null,
    "name": "Customer-naming_series-options",
@@ -375,7 +375,7 @@
    "property": "options",
    "property_type": "Text",
    "row_name": null,
-   "value": ".{territory}.-.{.#}."
+   "value": ".{territory}./.{.#}."
   },
   {
    "_assign": null,
