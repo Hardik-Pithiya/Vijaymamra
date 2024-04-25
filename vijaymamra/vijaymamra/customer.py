@@ -26,6 +26,7 @@ from erpnext.accounts.party import (  # noqa
 from erpnext.utilities.transaction_base import TransactionBase
 
 
+
 class Customer(TransactionBase):
 	def get_feed(self):
 		return self.customer_name

@@ -19,6 +19,7 @@ from erpnext.accounts.party import (  # noqa
 from erpnext.utilities.transaction_base import TransactionBase
 
 
+
 class Supplier(TransactionBase):
 	def get_feed(self):
 		return self.supplier_name
