@@ -1,7 +1,7 @@
 [
  {
   "align": "Center",
-  "content": "<div style=\"text-align: center;\">\n<img alt=\"Vijay Mamra\" height=\"100.0\" src=\"/public/files/vijay logo.png\" style=\"height: 100.0px;\">\n<p><b style=\"font-size: 24px;\">Vijay Mamra Private Limited</b><br>SRNO 828, AHMEDABAD BAVAL HIGHWAY, RAJODA, BAVLA-382220, Gujarat, India,<br>\n    Phone No: 9825212056, 9825219456, 9825218456 <br>GSTIN: 24AABCV8875G1ZZ, CIN : U15499GJ2003PTC43399</p>\n</div>",
+  "content": "<div style=\"text-align: center;\">\n<img alt=\"Vijay Mamra\" height=\"100.0\" src=\"/files/vijay logo.png\" style=\"height: 100px;\">\n<p><b style=\"font-size: 24px;\">Vijay Mamra Private Limited</b><br>SRNO 828, AHMEDABAD BAVAL HIGHWAY, RAJODA, BAVLA-382220, Gujarat, India,<br>\n    Phone No: 9825212056, 9825219456, 9825218456 <br>GSTIN: 24AABCV8875G1ZZ, CIN : U15499GJ2003PTC43399</p>\n</div>",
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Letter Head",
@@ -16,7 +16,7 @@
   "image_width": 100.0,
   "is_default": 0,
   "letter_head_name": "Vijay Mamra",
-  "modified": "2023-10-20 10:16:42.753187",
+  "modified": "2024-05-14 17:03:11.582369",
   "name": "Vijay Mamra",
   "source": "HTML"
  },
