@@ -12,6 +12,7 @@ def execute(filters=None):
     
     columns = [
 		{'label': '<b>Bill No</b>', 'fieldname': 'name', 'fieldtype': 'Data', 'width': 150},
+        {'label': '<b>Customer Name</b>', 'fieldname': 'customer_name', 'fieldtype': 'Data', 'width': 150},
 		{'label': '<b>Bill Date</b>', 'fieldname': 'posting_date', 'fieldtype': 'Data', 'width': 150},
 		{'label': '<b>Name</b>', 'fieldname': 'broker', 'fieldtype': 'Data', 'width': 150},
 		{'label': '<b>Item Name</b>', 'fieldname': 'item_name', 'fieldtype': 'Data', 'width': 150},
@@ -24,6 +25,7 @@ def execute(filters=None):
     sql = """
     	SELECT 
             SI.name,
+            SI.customer_name,
             SI.posting_date,
             SP.name as broker,
             SII.item_name,
