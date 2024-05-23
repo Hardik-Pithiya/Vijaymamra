@@ -158,5 +158,21 @@
   "property_type": "Check",
   "row_name": null,
   "value": "1"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Customer",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "Territory",
+  "is_system_generated": 0,
+  "modified": "2024-05-23 14:37:24.471383",
+  "module": "vijaymamra",
+  "name": "Customer-Territory-reqd",
+  "property": "reqd",
+  "property_type": "Check",
+  "row_name": null,
+  "value": "1"
  }
 ]

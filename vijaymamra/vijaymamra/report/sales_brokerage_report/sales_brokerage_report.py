@@ -11,15 +11,15 @@ def execute(filters=None):
     broker = filters.get('broker', '')
     
     columns = [
-		{'label': '<b>Bill No</b>', 'fieldname': 'name', 'fieldtype': 'Data', 'width': 150},
-        {'label': '<b>Customer Name</b>', 'fieldname': 'customer_name', 'fieldtype': 'Data', 'width': 150},
-		{'label': '<b>Bill Date</b>', 'fieldname': 'posting_date', 'fieldtype': 'Data', 'width': 150},
-		{'label': '<b>Name</b>', 'fieldname': 'broker', 'fieldtype': 'Data', 'width': 150},
-		{'label': '<b>Item Name</b>', 'fieldname': 'item_name', 'fieldtype': 'Data', 'width': 150},
-		{'label': '<b>Rate</b>', 'fieldname': 'rate', 'fieldtype': 'Data', 'width': 150},
-		{'label': '<b>Quantity</b>', 'fieldname': 'qty', 'fieldtype': 'Data', 'width': 150},
-		{'label': '<b>Brockrage Rate</b>', 'fieldname': 'rate_with_type', 'fieldtype': 'Data', 'width': 150},
-		{'label': '<b>Total</b>', 'fieldname': 'total', 'fieldtype': 'Data', 'width': 150}
+		{'label': '<b>Bill No</b>', 'fieldname': 'name', 'fieldtype': 'Link', 'options': 'Sales Invoice', 'width': 160},
+        {'label': '<b>Customer Name</b>', 'fieldname': 'customer_name', 'fieldtype': 'Data', 'width': 160},
+		{'label': '<b>Bill Date</b>', 'fieldname': 'posting_date', 'fieldtype': 'Data', 'width': 160},
+		{'label': '<b>Broker Name</b>', 'fieldname': 'broker', 'fieldtype': 'Link', 'options': 'Sales Partner', 'width': 160},
+		{'label': '<b>Item Name</b>', 'fieldname': 'item_name', 'fieldtype': 'Data', 'width': 160},
+		{'label': '<b>Rate</b>', 'fieldname': 'rate', 'fieldtype': 'Data', 'width': 80},
+		{'label': '<b>Quantity</b>', 'fieldname': 'qty', 'fieldtype': 'Data', 'width': 80},
+		{'label': '<b>Brockrage Rate</b>', 'fieldname': 'rate_with_type', 'fieldtype': 'Data', 'width': 160},
+		{'label': '<b>Total</b>', 'fieldname': 'total', 'fieldtype': 'Data', 'width': 80},
 	]
 
     sql = """
@@ -31,22 +31,23 @@ def execute(filters=None):
             SII.item_name,
             SII.rate,
             SII.qty,
-    		CONCAT(ROUND(SPR.rate, 2), ' ', SPR.type) AS rate_with_type,
-        CASE 
-            WHEN SPR.type = 'KG' THEN SPR.rate * SII.total_weight
-            WHEN SPR.type = 'Nos' THEN SPR.rate * SII.qty
-            WHEN SPR.type = 'Amount' THEN SPR.rate * SII.amount
-        END AS total
+    		COALESCE(CONCAT(ROUND(SPR.rate, 2), ' ', SPR.type), ' - ') AS rate_with_type,
+            COALESCE(
+                CASE 
+                    WHEN SPR.type = 'KG' THEN SPR.rate * SII.total_weight
+                    WHEN SPR.type = 'Nos' THEN SPR.rate * SII.qty
+                    WHEN SPR.type = 'Amount' THEN SPR.rate * SII.amount
+                END, 0) AS total
 		FROM
 			`tabSales Invoice` AS SI
 		JOIN `tabSales Invoice Item` AS SII ON SI.name = SII.parent AND SI.docstatus = 1
-		JOIN `tabSales Partner` AS SP ON SP.name = SI.sales_partner
-		JOIN `tabSales Partner Rate` AS SPR ON SP.name = SPR.parent AND SPR.item_code = SII.item_code
+		LEFT JOIN `tabSales Partner` AS SP ON SP.name = SI.sales_partner
+		LEFT JOIN `tabSales Partner Rate` AS SPR ON SP.name = SPR.parent AND SPR.item_code = SII.item_code
 		WHERE
             (SI.posting_date BETWEEN %s AND %s OR %s = '' OR %s = '')
             AND (SP.name = %s OR %s = '')
         ORDER BY 
-            SI.name
+            SI.posting_date DESC
     """
     filters = (from_date, to_date, from_date, to_date, broker, broker)
 
