@@ -11,6 +11,7 @@
   "gate_pass_outwards_section",
   "naming_series",
   "gate_pass_inwards",
+  "branch",
   "column_break_ypvex",
   "posting_date",
   "posting_time",
@@ -22,7 +23,10 @@
   "driver_contact_number",
   "order_section",
   "invoice_details",
+  "section_break_nfqil",
   "total_weight",
+  "column_break_reekb",
+  "total_quantity",
   "actual_weight_section",
   "tier_weight",
   "column_break_keyqq",
@@ -74,7 +78,7 @@
   {
    "fieldname": "company_name",
    "fieldtype": "Data",
-   "label": "Company Name"
+   "label": "Transporter Name"
   },
   {
    "fieldname": "vehicle_number",
@@ -194,12 +198,33 @@
    "options": "Gate Pass Out",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "total_quantity",
+   "fieldtype": "Float",
+   "label": "Total Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_reekb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_nfqil",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "gate_pass_inwards.branch",
+   "fieldname": "branch",
+   "fieldtype": "Select",
+   "label": "Branch",
+   "options": "Branch-1\nBranch-2"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-03-26 16:45:47.686257",
+ "modified": "2024-06-07 12:59:25.021490",
  "modified_by": "Administrator",
  "module": "vijaymamra",
  "name": "Gate Pass Out",

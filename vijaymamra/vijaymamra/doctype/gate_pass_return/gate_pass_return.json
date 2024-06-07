@@ -14,6 +14,7 @@
   "time",
   "section_break_ko912",
   "notes",
+  "branch",
   "section_break_9nv75",
   "items",
   "total_qty",
@@ -81,12 +82,19 @@
    "label": "Gate Pass No",
    "options": "Gate Pass",
    "reqd": 1
+  },
+  {
+   "fetch_from": "gate_pass_no.branch",
+   "fieldname": "branch",
+   "fieldtype": "Select",
+   "label": "Branch",
+   "options": "Branch-1\nBranch-2"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-03-26 16:46:14.646492",
+ "modified": "2024-06-07 12:59:08.469644",
  "modified_by": "Administrator",
  "module": "vijaymamra",
  "name": "Gate Pass Return",
