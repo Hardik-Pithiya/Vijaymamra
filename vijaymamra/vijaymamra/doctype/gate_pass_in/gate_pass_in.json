@@ -63,8 +63,7 @@
   {
    "fieldname": "company_name",
    "fieldtype": "Data",
-   "label": "Transporter Name",
-   "reqd": 1
+   "label": "Transporter Name"
   },
   {
    "fieldname": "vehicle_number",
@@ -109,13 +108,13 @@
    "fieldname": "branch",
    "fieldtype": "Select",
    "label": "Branch",
-   "options": "Branch-1\nBranch-2"
+   "options": "Unit-1 Rajoda\nUnit-2 Lodariyal"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-07 12:55:20.592715",
+ "modified": "2024-06-07 15:46:06.459159",
  "modified_by": "Administrator",
  "module": "vijaymamra",
  "name": "Gate Pass In",

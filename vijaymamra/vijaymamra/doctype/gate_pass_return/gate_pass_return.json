@@ -88,13 +88,13 @@
    "fieldname": "branch",
    "fieldtype": "Select",
    "label": "Branch",
-   "options": "Branch-1\nBranch-2"
+   "options": "Unit-1 Rajoda\nUnit-2 Lodariyal"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-07 12:59:08.469644",
+ "modified": "2024-06-07 15:45:18.164375",
  "modified_by": "Administrator",
  "module": "vijaymamra",
  "name": "Gate Pass Return",
