@@ -2,7 +2,13 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Gate Pass', {
-	// refresh: function(frm) {
-
-	// }
+		on_submit:function(frm) {
+	    frappe.call({
+	        method:'vijaymamra.vijaymamra.doctype.gate_pass.gate_pass.update_status',
+	        args:{
+	            data :frm.doc.items,
+	            name :frm.doc.name
+	        }
+	    })
+	}
 });

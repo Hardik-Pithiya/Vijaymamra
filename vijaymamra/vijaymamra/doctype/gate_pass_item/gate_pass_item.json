@@ -45,17 +45,18 @@
    "label": "Description"
   },
   {
+   "default": "Good Received",
    "fieldname": "status",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Not Return\nRepairable\nNot Repairable"
+   "options": "Good Received\nNot Return\nRepairable\nNot Repairable"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-09-20 18:51:40.330837",
+ "modified": "2024-06-18 15:24:06.621443",
  "modified_by": "Administrator",
  "module": "vijaymamra",
  "name": "Gate Pass Item",
