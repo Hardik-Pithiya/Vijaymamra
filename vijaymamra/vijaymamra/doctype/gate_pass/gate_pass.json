@@ -18,6 +18,8 @@
   "items",
   "section_break_yxfur",
   "total_qty",
+  "column_break_5xzqf",
+  "completed",
   "amended_from"
  ],
  "fields": [
@@ -88,12 +90,24 @@
    "fieldtype": "Select",
    "label": "Branch",
    "options": "Unit-1 Rajoda\nUnit-2 Lodariyal"
+  },
+  {
+   "fieldname": "column_break_5xzqf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "completed",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Completed",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-07 15:44:35.434001",
+ "modified": "2024-06-24 17:18:05.568237",
  "modified_by": "Administrator",
  "module": "vijaymamra",
  "name": "Gate Pass",

@@ -40,11 +40,11 @@
   "doctype": "Server Script",
   "doctype_event": "Before Insert",
   "event_frequency": "All",
-  "modified": "2023-09-21 11:21:47.794634",
+  "modified": "2024-06-24 17:48:24.272738",
   "module": "vijaymamra",
   "name": "Gate Pass Master Status Update",
   "reference_doctype": null,
-  "script": "name = frappe.form_dict['name']\n\nitem_status = frappe.db.sql(\" select status from `tabGate Pass Item` where parent=%s \",(name), as_dict=True)\n\nstatus_check = \"Not\"\nfor item in item_status:\n    status = item.get('status')  \n    if status == \"Not Return\":\n        status_check = \"Yes\"\n        break\n\nif status_check == \"Not\":\n    frappe.db.set_value(\"Gate Pass\", str(name), \"docstatus\", 3)",
+  "script": "name = frappe.form_dict['name']\n\nitem_status = frappe.db.sql(\" select status from `tabGate Pass Item` where parent=%s \",(name), as_dict=True)\n\nstatus_check = \"Not\"\nfor item in item_status:\n    status = item.get('status')  \n    if status == \"Not Return\":\n        status_check = \"Yes\"\n        break\n\nif status_check == \"Not\":\n    frappe.db.set_value(\"Gate Pass\", str(name), \"completed\", 1)",
   "script_type": "API"
  },
  {
@@ -136,11 +136,11 @@
   "doctype": "Server Script",
   "doctype_event": "Before Insert",
   "event_frequency": "All",
-  "modified": "2023-09-22 17:27:37.447690",
+  "modified": "2024-06-25 15:11:01.961375",
   "module": "vijaymamra",
   "name": "gate pass in status update",
   "reference_doctype": null,
-  "script": "name = frappe.form_dict['gate_name']\n\nfrappe.db.set_value(\"Gate Pass In\", name, 'docstatus', 3)",
+  "script": "name = frappe.form_dict['gate_name']\n\nfrappe.db.set_value(\"Gate Pass In\", name, 'completed', 1)",
   "script_type": "API"
  },
  {

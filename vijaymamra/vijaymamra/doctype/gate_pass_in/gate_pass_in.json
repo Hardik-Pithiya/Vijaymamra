@@ -18,6 +18,7 @@
   "logistics_details_section",
   "company_name",
   "vehicle_number",
+  "completed",
   "column_break_tv2a7",
   "driver_name",
   "driver_contact_number",
@@ -109,12 +110,20 @@
    "fieldtype": "Select",
    "label": "Branch",
    "options": "Unit-1 Rajoda\nUnit-2 Lodariyal"
+  },
+  {
+   "default": "0",
+   "fieldname": "completed",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Completed ",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-07 15:46:06.459159",
+ "modified": "2024-06-25 15:11:32.112454",
  "modified_by": "Administrator",
  "module": "vijaymamra",
  "name": "Gate Pass In",

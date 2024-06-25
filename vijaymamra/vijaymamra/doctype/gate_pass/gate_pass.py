@@ -15,4 +15,4 @@ def update_status(data, name):
 	all_good_received = all(item.get('status') == 'Good Received' for item in data1)
 
 	if all_good_received:
-		frappe.db.set_value("Gate Pass", name, "docstatus", 3)
+		frappe.db.set_value("Gate Pass", name, "completed", 1)

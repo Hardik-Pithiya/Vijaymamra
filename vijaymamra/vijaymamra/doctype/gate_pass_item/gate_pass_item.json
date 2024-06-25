@@ -11,6 +11,7 @@
   "qty",
   "column_break_tkzpl",
   "description",
+  "amount",
   "status"
  ],
  "fields": [
@@ -51,12 +52,18 @@
    "in_list_view": 1,
    "label": "Status",
    "options": "Good Received\nNot Return\nRepairable\nNot Repairable"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-06-18 15:24:06.621443",
+ "modified": "2024-06-25 15:43:21.277267",
  "modified_by": "Administrator",
  "module": "vijaymamra",
  "name": "Gate Pass Item",
