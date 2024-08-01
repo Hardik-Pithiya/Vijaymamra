@@ -1,0 +1,28 @@
+{
+ "add_total_row": 1,
+ "columns": [],
+ "creation": "2024-08-01 10:54:43.618864",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "json": "{\"filters\":[],\"fields\":[[\"name\",\"Gate Pass Out\"],[\"invoice_number\",\"Invoice Details\"],[\"posting_date\",\"Gate Pass Out\"],[\"vehicle_number\",\"Gate Pass Out\"],[\"net_weight\",\"Gate Pass Out\"],[\"tolerated_weight\",\"Gate Pass Out\"]],\"order_by\":\"`tabGate Pass Out`.`modified` desc\",\"add_totals_row\":0,\"page_length\":20,\"column_widths\":{\"name\":164,\"Invoice Details:invoice_number\":120,\"posting_date\":120,\"vehicle_number\":120,\"net_weight\":120,\"tolerated_weight\":120},\"group_by\":null}",
+ "letter_head": "Vijay Mamra Private Limited",
+ "modified": "2024-08-01 10:55:13.125578",
+ "modified_by": "Administrator",
+ "module": "vijaymamra",
+ "name": "Gate Pass Return Details",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Gate Pass Out",
+ "report_name": "Gate Pass Return Details",
+ "report_type": "Report Builder",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ]
+}

@@ -10,7 +10,8 @@
   "weight",
   "customer_code",
   "customer_name",
-  "total_quantity"
+  "total_quantity",
+  "total_bag"
  ],
  "fields": [
   {
@@ -53,12 +54,18 @@
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Quantity"
+  },
+  {
+   "fetch_from": "invoice_number.custom_total_bag",
+   "fieldname": "total_bag",
+   "fieldtype": "Int",
+   "label": "Total Bag"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-06-07 12:34:27.319321",
+ "modified": "2024-08-01 10:48:36.199482",
  "modified_by": "Administrator",
  "module": "vijaymamra",
  "name": "Invoice Details",
