@@ -7,7 +7,7 @@ frappe.ui.form.on('Gate Pass', {
 	        method:'vijaymamra.vijaymamra.doctype.gate_pass.gate_pass.update_status',
 	        args:{
 	            data :frm.doc.items,
-	            name :frm.doc.name
+	            name :frm.doc.name,
 	        }
 	    })
 	}
