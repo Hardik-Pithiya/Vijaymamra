@@ -6,12 +6,19 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "wards",
   "invoice_number",
+  "purchase_receipt",
   "weight",
   "customer_code",
   "customer_name",
   "total_quantity",
-  "total_bag"
+  "total_bag",
+  "supplier",
+  "supplier_name",
+  "pr_weight",
+  "pr_qty",
+  "pr_bag"
  ],
  "fields": [
   {
@@ -19,11 +26,11 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Invoice Number",
-   "options": "Sales Invoice",
-   "reqd": 1
+   "options": "Sales Invoice"
   },
   {
    "default": "0.00",
+   "depends_on": "eval:doc.wards == 'Out Wards'",
    "fetch_from": "invoice_number.total_net_weight",
    "fieldname": "weight",
    "fieldtype": "Float",
@@ -31,41 +38,107 @@
    "label": "Weight",
    "non_negative": 1,
    "precision": "2",
-   "reqd": 1
+   "read_only_depends_on": "eval:doc.wards != 'Out Wards'"
   },
   {
+   "depends_on": "eval:doc.wards == 'Out Wards'",
    "fetch_from": "invoice_number.customer",
    "fieldname": "customer_code",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Customer Code",
-   "options": "Customer"
+   "options": "Customer",
+   "read_only_depends_on": "eval:doc.wards != 'Out Wards'"
   },
   {
+   "depends_on": "eval:doc.wards == 'Out Wards'",
    "fetch_from": "invoice_number.customer_name",
    "fieldname": "customer_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Customer Name"
+   "label": "Customer Name",
+   "read_only_depends_on": "eval:doc.wards != 'Out Wards'"
   },
   {
+   "depends_on": "eval:doc.wards == 'Out Wards'",
    "fetch_from": "invoice_number.total_qty",
    "fieldname": "total_quantity",
    "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "Quantity"
+   "label": "Quantity",
+   "read_only_depends_on": "eval:doc.wards != 'Out Wards'"
   },
   {
+   "depends_on": "eval:doc.wards == 'Out Wards'",
    "fetch_from": "invoice_number.custom_total_bag",
    "fieldname": "total_bag",
    "fieldtype": "Int",
-   "label": "Total Bag"
+   "label": "Total Bag",
+   "read_only_depends_on": "eval:doc.wards != 'Out Wards'"
+  },
+  {
+   "fieldname": "wards",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "In/Out Wards",
+   "options": "\nIn Wards\nOut Wards"
+  },
+  {
+   "fieldname": "purchase_receipt",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Purchase Receipt",
+   "options": "Purchase Receipt"
+  },
+  {
+   "depends_on": "eval:doc.wards == 'In Wards'",
+   "fetch_from": "purchase_receipt.supplier",
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier",
+   "read_only_depends_on": "eval:doc.wards != 'In Wards'"
+  },
+  {
+   "depends_on": "eval:doc.wards == 'In Wards'",
+   "fetch_from": "purchase_receipt.supplier_name",
+   "fieldname": "supplier_name",
+   "fieldtype": "Data",
+   "label": "Supplier Name",
+   "read_only_depends_on": "eval:doc.wards != 'In Wards'"
+  },
+  {
+   "depends_on": "eval:doc.wards == 'In Wards'",
+   "fetch_from": "purchase_receipt.total_qty",
+   "fieldname": "pr_qty",
+   "fieldtype": "Data",
+   "label": "Quantity",
+   "read_only_depends_on": "eval:doc.wards != 'In Wards'"
+  },
+  {
+   "depends_on": "eval:doc.wards == 'In Wards'",
+   "fetch_from": "purchase_receipt.custom_total_bags",
+   "fieldname": "pr_bag",
+   "fieldtype": "Data",
+   "label": "Total Bag",
+   "read_only_depends_on": "eval:doc.wards != 'In Wards'"
+  },
+  {
+   "depends_on": "eval:doc.wards == 'In Wards'",
+   "fetch_from": "purchase_receipt.total_net_weight",
+   "fieldname": "pr_weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Weight",
+   "non_negative": 1,
+   "precision": "2",
+   "read_only_depends_on": "eval:doc.wards != 'In Wards'"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-08-01 10:48:36.199482",
+ "modified": "2024-09-30 15:19:21.134260",
  "modified_by": "Administrator",
  "module": "vijaymamra",
  "name": "Invoice Details",
